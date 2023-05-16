@@ -7,6 +7,7 @@ from hash_table import HashTable
 
 from quick_sort import quick_sort
 from binary_tree_search import binary_tree_search
+from binary_search import binary_search
 
 
 #  Reading information from a file
@@ -40,6 +41,18 @@ for i in range(1, len(text)):
     amount = int(text[i][4])
     price = int(text[i][5])
     cost = int(text[i][6])
+
+    # Protection against non-unique ids
+    # If id has been changed program will print it
+    if binary_search(numbers_arr, number) > -1:
+        print(f"Id {number} for {name} changed to ", end='')
+        while binary_search(numbers_arr, number) > -1:
+            number = number + 10
+        print(number)
+
+    # Protection against incorrectly calculated cost
+    if price * amount != cost:
+        cost = price * amount
 
     name_table.add(Data(number, name))
 
